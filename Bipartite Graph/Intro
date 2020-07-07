@@ -1,1 +1,27 @@
 
+ Bipartite graph also known as Bigraph special graph such that you can divide the vertex set into two disjoint sets such that :
+  1. Each vertex belongs to one of the two sets.
+  2. Each edge connect vertices of two different sets.
+  
+  A = { 1 , 3 , 5 }
+  B = { 2 , 4 , 6 }
+  
+  edges can be ::
+  1 - 2
+  1 - 4
+  1 - 6
+  3 - 2
+  3 - 4
+  3 - 6
+  5 - 2
+  5 - 4
+  5 - 6
+  
+  but can not 
+   1 - 3
+   because 1 and 3 in set A.
+   3 - 5
+   3 and 5 in set A.
+   2 - 6
+   2 and 6 in set B.
+   
