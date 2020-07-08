@@ -1,2 +1,22 @@
 
 It is defined as the longest path between any two node.
+
+Naive approach :: 
+We would run dfs , N times.
+
+in each iteration we should set ith node as root and find distance of farthest node.
+complexity O ( n^2 ).
+
+Better approach ::
+
+We can find diameter in only 2 DFS.
+
+Take an arbitrary node as root and run dfs from it and find the farthest node , let this node be x.
+
+Run a DFS from node x and find the maximum distance from this node to any other node, this distance is diameter.
+
+
+
+
+
+
