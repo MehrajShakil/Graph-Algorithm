@@ -1,0 +1,105 @@
+///   BISMILLAHIR RAHMANIR RAHEEM
+///   ALLAH IS WATCHING ME
+///   ALLAH save us from COVID-19.Amin.
+
+///   Every soul shall taste death.
+
+/// Tag ::
+
+#include<bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+#include <ext/pb_ds/detail/standard_policies.hpp>
+
+///  order_of_key return number of elements less than x.
+///  find_by_order return index.
+
+using namespace std;
+using namespace __gnu_pbds;
+
+
+#define MOHAMMAD  ios::sync_with_stdio(0);cin.tie(0);
+#define all(x)    (x).begin(), (x).end()
+#define AE        cout << fixed << setprecision(10);
+
+int dx8[] = {0, 0, 1, 1, 1, -1, -1, -1}; // 8-direction.......
+int dy8[] = {1,-1, 1, -1, 0, 0, -1, 1};
+int dx4[]= {1,-1,0,0}; // 4-direction...........
+int dy4[]= {0,0,1,-1};
+
+typedef tree< int, null_type, less<int>, rb_tree_tag,tree_order_statistics_node_update> ordered_set;
+typedef tree<pair<int, int>,null_type,less<pair<int, int>>,rb_tree_tag,tree_order_statistics_node_update> ordered_multiset;
+
+//debug
+template<typename F,typename S>ostream&operator<<(ostream&os,const pair<F,S>&p){return os<<"("<<p.first<<", "<<p.second<<")";}
+template<typename T>ostream&operator<<(ostream&os,const vector<T>&v){os<<"{";for(auto it=v.begin();it!=v.end();++it){if(it!=v.begin())os<<", ";os<<*it;}return os<<"}";}
+template<typename T>ostream&operator<<(ostream&os,const set<T>&v){os<<"[";for(auto it=v.begin();it!=v.end();++it){if(it!=v.begin())os<<",";os<<*it;}return os<<"]";}
+template<typename T>ostream&operator<<(ostream&os,const multiset<T>&v) {os<<"[";for(auto it=v.begin();it!=v.end();++it){if(it!=v.begin())os<<", ";os<<*it;}return os<<"]";}
+template<typename F,typename S>ostream&operator<<(ostream&os,const map<F,S>&v){os<<"[";for(auto it=v.begin();it!=v.end();++it){if(it!=v.begin())os<<", ";os<<it->first<<" = "<<it->second;}return os<<"]";}
+#define dbg(args...) do {cerr << #args << " : "; faltu(args); } while(0)
+void faltu(){cerr << endl;}
+template<typename T>void faltu(T a[],int n){for(int i=0;i<n;++i)cerr<<a[i]<<' ';cerr<<endl;}
+template<typename T,typename...hello>void faltu(T arg,const hello&...rest){cerr<<arg<<' ';faltu(rest...);}
+//#else
+//#define dbg(args...)
+//***********************************************  The END **********************************************************************************************************************************
+using ll = long long;
+const ll N = 40;
+const ll INF = 1e18;
+const ll mod = 1000000007;
+
+vector < ll > e[N];
+bool visit[N][N];
+char grid[N][N];
+ll startx , starty , endx , endy , n;
+ll dist[N][N];
+
+ void bfs ( ll x , ll y ){
+ queue < pair < ll , ll > > q;
+
+ q.push( { x , y } );
+ ll d = 0;
+ while ( q.size()){
+       ll xx = q.front().first;
+       ll yy = q.front().second;
+       q.pop();
+ for ( ll k = 0 ; k<4 ; ++k ){
+     ll newX = xx + dx4[k];
+     ll newY = yy + dy4[k];
+     if ( grid[newX][newY]=='T' or visit[newX][newY] or newX>=n or newX<0 or newY>=n or newY<0 ) continue;
+     dist[newX][newY] = dist[xx][yy] + 1;
+     q.push( { newX , newY } );
+     visit[newX][newY] = true;
+ }
+}
+}
+
+
+int main()
+{
+
+ // MOHAMMAD
+
+ cin >> n;
+ for ( ll i = 0 ; i<n ; ++i ){
+      for ( ll j = 0 ; j<n ; ++j ){
+          cin >> grid[i][j];
+          if(grid[i][j]=='S') startx = i , starty = j ;
+          if(grid[i][j]=='E') endx = i , endy = j;
+      }
+ }
+
+ bfs ( startx , starty );
+ cout << dist[endx][endy];
+
+}
+
+
+/*
+
+
+
+
+  Alhamdulillah
+*/
+
