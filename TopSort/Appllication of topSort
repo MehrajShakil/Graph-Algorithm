@@ -1,0 +1,6 @@
+1. topSort implementation using DFS.
+2. topSort implementation using BFS.
+3. topSort implementation using kahn's Algorithm.
+4. Cycle detection of a DAG.
+5. Find lexicographically smallest topSort using kahn's Algorithm. 
+6. Find lexicographically largest topSort using Kahn's Algorithm. 
