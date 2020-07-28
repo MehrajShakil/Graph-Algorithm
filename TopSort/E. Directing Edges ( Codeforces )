@@ -1,0 +1,182 @@
+///   BISMILLAHIR RAHMANIR RAHEEM
+///   ALLAH IS WATCHING ME
+///   ALLAH save us from COVID-19.Amin.
+
+///   Every soul shall taste death.
+
+/// Tag ::
+
+#include<bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+#include <ext/pb_ds/detail/standard_policies.hpp>
+
+///  order_of_key return number of elements less than x.
+///  find_by_order return index.
+
+using namespace std;
+using namespace __gnu_pbds;
+
+
+#define MOHAMMAD  ios::sync_with_stdio(0);cin.tie(0);
+#define all(x)    (x).begin(), (x).end()
+#define AE        cout << fixed << setprecision(10);
+
+int dx8[] = {0, 0, 1, 1, 1, -1, -1, -1}; // 8-direction.......
+int dy8[] = {1,-1, 1, -1, 0, 0, -1, 1};
+int dx4[]= {1,-1,0,0}; // 4-direction...........
+int dy4[]= {0,0,1,-1};
+
+typedef tree< int, null_type, less<int>, rb_tree_tag,tree_order_statistics_node_update> ordered_set;
+typedef tree<pair<int, int>,null_type,less<pair<int, int>>,rb_tree_tag,tree_order_statistics_node_update> ordered_multiset;
+
+//debug
+template<typename F,typename S>ostream&operator<<(ostream&os,const pair<F,S>&p){return os<<"("<<p.first<<", "<<p.second<<")";}
+template<typename T>ostream&operator<<(ostream&os,const vector<T>&v){os<<"{";for(auto it=v.begin();it!=v.end();++it){if(it!=v.begin())os<<", ";os<<*it;}return os<<"}";}
+template<typename T>ostream&operator<<(ostream&os,const set<T>&v){os<<"[";for(auto it=v.begin();it!=v.end();++it){if(it!=v.begin())os<<",";os<<*it;}return os<<"]";}
+template<typename T>ostream&operator<<(ostream&os,const multiset<T>&v) {os<<"[";for(auto it=v.begin();it!=v.end();++it){if(it!=v.begin())os<<", ";os<<*it;}return os<<"]";}
+template<typename F,typename S>ostream&operator<<(ostream&os,const map<F,S>&v){os<<"[";for(auto it=v.begin();it!=v.end();++it){if(it!=v.begin())os<<", ";os<<it->first<<" = "<<it->second;}return os<<"]";}
+#define dbg(args...) do {cerr << #args << " : "; faltu(args); } while(0)
+void faltu(){cerr << endl;}
+template<typename T>void faltu(T a[],int n){for(int i=0;i<n;++i)cerr<<a[i]<<' ';cerr<<endl;}
+template<typename T,typename...hello>void faltu(T arg,const hello&...rest){cerr<<arg<<' ';faltu(rest...);}
+//#else
+//#define dbg(args...)
+//***********************************************  The END **********************************************************************************************************************************
+using ll = long long;
+const ll N = 2e5;
+const ll INF = 1e18;
+const ll mod = 1000000007;
+const ll limit = (1LL<<64) - 1;
+
+vector < ll > e[N + 1];
+
+vector < pair < ll , ll > > undirected;
+
+ll indegree[N + 1] , order[N + 1];
+ll covered = 0;
+
+void kahn ( ll node ){
+
+queue < ll > q;
+
+for ( ll i = 1 ; i<=node ; ++i ){
+     if(indegree[i]==0) q.push( i );
+}
+
+while ( !q.empty() ){
+     ll curNode = q.front();
+     q.pop();
+     covered++;
+     order[curNode] = covered;
+     for ( auto child : e[curNode] ){
+          indegree[child]--;
+          if( indegree[child] == 0 ){
+              q.push( child );
+          }
+     }
+}
+
+}
+
+
+int main()
+{
+
+  // MOHAMMAD
+
+  ll t;
+  cin >> t;
+  while ( t-- ){
+  ll node , edge , u , v , tt;
+  cin >> node >> edge;
+
+
+  /// clean up,
+
+  for ( ll i = 1 ; i<=node ; ++i ){
+       e[i].clear();
+       order[i] = indegree[i] = 0;
+       covered = 0;
+  }
+
+  undirected.clear();
+
+  while ( edge-- ){
+       cin >> tt >> u >> v;
+       if ( tt ){
+       e[u].push_back ( v );
+       indegree[v]++;
+       }
+       else{
+           undirected.push_back( { u , v } );
+       }
+  }
+
+  kahn( node );
+
+  if ( node!=covered ){
+      cout << "NO\n";
+  }
+  else{
+      cout << "YES\n";
+      for ( ll i = 1 ; i<=node ; ++i ){
+          for ( auto child : e[i] ){
+               cout << i << " " << child << "\n";
+          }
+      }
+
+      for ( auto it : undirected ){
+
+           ll u = it.first;
+           ll v = it.second;
+
+           if ( order[u] > order[v] ){
+                swap ( u , v );
+           }
+           cout << u << " " << v << "\n";
+      }
+  }
+
+
+
+
+
+   /*
+  if ( covered!=node ) cout << "The graph contains a Cycle\n";
+  else cout << "This is a acyclic graph\n";
+                */
+
+  }
+
+
+}
+
+
+/*
+
+  Approach :
+
+  /// In my opinion ,
+
+  topSort bolte to amra bujachhi kon kaj tar age kon kaj ta korbo.
+
+  to dora jak , amake kisu undirected edge dawa ace bollo j ei edge gula k directed koro jeno cycle create na hy...
+
+  oky , to dori topsort e u age ace the pore v.
+  tar mani u er upor obbsoi v depend kore.
+  ekhon jodi ami edge ta v to u dei tahole kintu cycle hower possibility thake karon hocce ami ekhn boltachi,
+  v er upor o u depend kortece.
+  ei jonno ei khane akta cycle hower possibility thaktece.
+
+  tai , amra u just akta upor depend rakbo uboy tar upor na.
+
+
+
+
+  complexity O ( node + edge ).
+
+
+
+  Alhamdulillah
+*/
