@@ -1,1 +1,7 @@
+Algorithm to find the articulation : 
+
+1. Find DFS Tree with the discovery time for every node.
+2. Find low for every node.
+3. check low[v]>=d[u] where u is parent of v.
+4. If true then u is an articualtion point.
 
