@@ -1,0 +1,7 @@
+
+Graph should be undirected.
+
+1. Find discovery time.
+2. Find low time.
+3. Check d[u] < low[v]. Where u is the parent of v.
+If true then this edge is a bridge.
