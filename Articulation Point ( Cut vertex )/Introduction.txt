@@ -1,3 +1,6 @@
+
+Graph should be undirected.
+
 Algorithm to find the Articulation Point ( AP ) ::  
 
 1. Find DFS Tree with the discovery time for every node.
