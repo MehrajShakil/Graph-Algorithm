@@ -1,4 +1,10 @@
 If there are such two criteria in a graph
-1. connected.
-2. No Articulation Point.
+1. undirected.
+2. connected.
+3. No Articulation Point.
 then we can mention the graph a Biconnected Graph.
+
+UPD-01 :: 
+
+a) In a Biconnected Graph , there is a simple cylce through any two vertices. 
+b) 
