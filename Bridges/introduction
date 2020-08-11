@@ -2,6 +2,6 @@
 Graph should be undirected.
 
 1. Find discovery time.
-2. Find low time.
+2. Find low time. Here, Low time is the minimum low time which is reachable from this node.
 3. Check d[u] < low[v]. Where u is the parent of v.
 If true then this edge is a bridge.
