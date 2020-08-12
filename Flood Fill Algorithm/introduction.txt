@@ -1,1 +1,5 @@
 
+Flood fill works as follows :
+1. we have a specific starting point.
+2. we fill this starting point with the colour intended.
+3. we check for each of the four (or 8, if we consider diagonals as well) neighbours, if they have the same colour as the starting point originally had; if so, we continue with recursively.
