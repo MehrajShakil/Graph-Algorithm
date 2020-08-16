@@ -1,0 +1,5 @@
+1. https://www.spoj.com/problems/CAPCITY/
+2. https://codeforces.com/problemset/problem/427/C
+3. https://codeforces.com/problemset/problem/505/D
+4. https://codeforces.com/problemset/problem/894/E
+5. https://codeforces.com/problemset/problem/22/E
