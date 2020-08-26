@@ -1,0 +1,2 @@
+1. http://shakilcompetitiveprogramming.blogspot.com/2014/08/blog-post.html
+2. https://cp-algorithms.com/graph/2SAT.html
