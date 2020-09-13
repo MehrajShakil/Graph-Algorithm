@@ -1,2 +1,8 @@
 Resources : https://codeforces.com/blog/entry/19175
 
+Theorem (Jordan, 1869) : Given a tree with N nodes, there exists a vertex whose removal partitions the tree into components, each with at most N/2 nodes. (i.e. For any given tree, the centroid always exists).
+
+Note : In a tree only two Centroid possible From Jordan Theorem . If there is two centroid. you can take any. Cause those two centroid look like same.
+
+
+
