@@ -65,30 +65,35 @@ const ll N = 1e5;
 const ll INF = 1e18;
 const ll limit = (1LL<<64) - 1;
 
-vector < ll > e[N+1];
-ll sub[N+1] , numofnode;
+vector < ll > e[N+1] , centroid;
+ll sub[N+1] , numofnode , mn = INF;
 
 void SubTree ( ll node , ll par = -1 ){
 
     sub[node] = 1;
+    ll mx = 0;
     for ( auto child : e[node] ){
         if ( child == par ) continue;
         SubTree ( child , node );
         sub[node]+=sub[child];
+        mx = max ( mx , sub[child] );
     }
+    mx = max ( mx , numofnode - sub[node] );
+    mn = min ( mn , mx );
 }
 
-ll FindCentroid ( ll node , ll par = -1 ){
+void FindCentroid ( ll node , ll par = -1 ){
 
+    ll mx = 0;
     for ( auto child : e[node] ){
         if ( child == par ) continue;
-        if ( 2*sub[child] > numofnode ) return FindCentroid( child , node ); /// if subtree[child] > than n/2, then we call it.
-                                                                             /// It is sure that which child is less than n/2
-                                                                             /// he can not be a centroid because his parent
-                                                                             /// already false as a centroid.
+        FindCentroid ( child , node );
+        mx = max ( mx , sub[child] );
     }
-
-    return node;
+    mx = max ( mx , numofnode - sub[node] );
+    if ( mx==mn ){
+       centroid.push_back( node );
+    }
 }
 
 int main()
@@ -107,22 +112,10 @@ int main()
    }
 
    SubTree ( 1 ); /// let 1 as root.
-   ll centroid = FindCentroid( 1 );
-   SubTree ( centroid ); /// let centroid as root.
-   ll mx = 0; /// largest component ( smallest possible ).
-   for ( auto child : e[centroid] ){
-        mx = max ( mx , sub[child] );
-   }
-   ll anotherCentroid = 0; /// A tree can at most two centroid and at least one centroid.
+   FindCentroid( 1 );
 
-   for ( auto child : e[centroid] ){
-        if ( node - sub[child] == mx ){
-           anotherCentroid = child;
-        }
-   }
-
-   cout << "centroid         : " << centroid << "\n";
-   if ( anotherCentroid ) cout << "another centroid : " << anotherCentroid << "\n";
+   cout << "Centroid(s) : ";
+   for ( auto it : centroid ) cout << it << " ";
 
 
 }
