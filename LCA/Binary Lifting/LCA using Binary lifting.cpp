@@ -1,4 +1,3 @@
-
 ///   BISMILLAHIR RAHMANIR RAHEEM
 ///   ALLAH IS WATCHING ME
 
@@ -78,7 +77,7 @@ ld degree_to_radian( ld x ){
 
 //***********************************************  The END **********************************************************************************************************************************
 
-const int N = 1e5 + 5;
+const int N = 2e5 + 5;
 const ll INF = 1e18;
 const ld EPS   = 1e-9;
 const ll limit = (1LL<<32) - 1;
@@ -124,33 +123,36 @@ void init( int root ){
 
 }
 
-int LCA ( int u , int v ){
+int LCA(int x, int y)
+{
+    if(level[x]<level[y]) swap(x,y);
 
-   if ( level[u] > level[v] ) swap( u , v );
-   int d = level[v] - level[u];
+    int big;
+    for(int j=0; 1<<j <= level[x]; j++) big=j;
 
-   while ( d > 0 ) {
-    int i = log2(d);
-    v = lca[v][i];
-    d-=(1<<i);
-   }
+    for(int j=big; j>=0; j--) {
+        if(level[x]-(1<<j) >= level[y]) {
+            x=lca[x][j];
+        }
+    }
 
-   if ( u == v ) return u;
+    if(x==y) return x;
 
-   while ( lca[u][0]!=lca[v][0] ) {
-    u = lca[u][0];
-    v = lca[v][0];
-   }
-
-   return lca[u][0];
-
+    for(int j=big; j>=0; j--) {
+        if(lca[x][j]!=lca[y][j]) {
+            x=lca[x][j], y=lca[y][j];
+        }
+    }
+    return lca[x][0];
 }
 
 
 
 void Solution ( int tc ){
 
-  cin >> node;
+  int q;
+
+  cin >> node >> q;
 
   for ( int i = 1 ; i < node ; ++i ) {
     int u , v;
@@ -163,16 +165,54 @@ void Solution ( int tc ){
 
   init( 1 );
 
-  int q;
 
-  cin >> q;
 
   for ( int i = 1 ; i<=q ; ++i ) {
 
-    int u , v;
-    cin >> u >> v;
+    int x;
 
-    cout << LCA ( u , v ) << "\n";
+    cin >> x;
+
+    int mx = 0;
+    int mxnode = 0;
+    vector < int > cur;
+
+    for ( int j = 1 ; j<=x ; ++j ) {
+        int u;
+        cin >> u;
+
+        /// dbg ( lca[u][0] , level[u] , mx );
+
+        if ( lca[u][0] == 1 or u == 1 ) continue;
+
+        if ( mx < level[u] ) {
+            mx = level[u];
+            mxnode = u;
+        }
+            cur.push_back ( u );
+
+    }
+
+    bool ok = true;
+
+    for ( auto child : cur ) {
+
+        int l = LCA ( child , mxnode );
+
+        /// dbg ( l , level[l] , level[child] , child , mxnode );
+
+        if ( l == 1 ) { /// must path er ek prante thkbei r 1 noder er sathe 1 len er gula already compute korci.
+            ok = false;
+        }
+        else{
+            if ( l!=child and abs(level[l]-level[child]) > 1  ) ok = false;
+        }
+    }
+
+    if ( ok ) cout << "YES\n";
+    else cout << "NO\n";
+
+
 
   }
 
@@ -185,7 +225,7 @@ void Solution ( int tc ){
 int main()
 {
 
-    /// MUHAMMAD;
+    MUHAMMAD;
 
 
 
@@ -224,6 +264,19 @@ int main()
 
 
 /*
+
+10 1
+1 2
+1 3
+1 4
+2 5
+2 6
+3 7
+7 8
+7 9
+9 10
+
+3 2 1 5
 
  LCA:
 
